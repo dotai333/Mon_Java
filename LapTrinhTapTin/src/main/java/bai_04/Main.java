@@ -44,7 +44,7 @@ public class Main {
                 System.out.println("Loi:" + ex.toString());
             }
 
-        } catch (Exception ex) {
+        } catch (Exception ex) {                                                                                                
             System.out.println("Doc file that bai");
             System.out.println("Loi:" + ex.toString());
         }
