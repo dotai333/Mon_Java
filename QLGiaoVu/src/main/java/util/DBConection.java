@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class DBConection {
     private static final String URL
-            = "jdbc:sqlserver://localhost;databaseName=QLGiaoVu;encrypt=true;trustServerCertificate=true;"
+            = "jdbc:sqlserver://localhost:1433;databaseName=QLGiaoVu;encrypt=true;trustServerCertificate=true;"
             + "databaseName=QLGiaoVu;"
             + "encrypt=true;"
             + "trustServerCertificate=true";

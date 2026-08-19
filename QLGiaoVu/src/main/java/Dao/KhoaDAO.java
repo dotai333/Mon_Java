@@ -107,7 +107,25 @@ public class KhoaDAO {
             System.out.println("Lỗi khi cập nhật dữ liệu: " + e.getMessage());
         }
         return false;
-    }        
+    }       
+    public List<Khoa> searchKhoa(String keyword) {
+        List<Khoa> list = new ArrayList<>();
+        String sql = "SELECT * FROM Khoa WHERE MaKhoa LIKE ? OR TenKhoa LIKE ?";
+        try (Connection conn = DBConection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            ps.setString(1, "%" + keyword + "%");
+            ps.setString(2, "%" + keyword + "%");
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Khoa(rs.getString("MaKhoa"), rs.getString("TenKhoa")));
+            }
+        } catch (Exception e) {
+            System.err.println("Lỗi tìm kiếm khoa: " + e.getMessage());
+        }
+        return list;
+    }
  
     //test 
     public static void main(String[] args) {

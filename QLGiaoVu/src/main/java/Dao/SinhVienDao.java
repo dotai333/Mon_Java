@@ -147,4 +147,32 @@ public class SinhVienDao {
         return ds;
     }
 
+   public List<SinhVien> searchSinhVien(String keyword) {
+    List<SinhVien> list = new ArrayList<>();
+    String sql = "SELECT * FROM SinhVien WHERE MaSV LIKE ? OR HoTen LIKE ? OR DiaChi LIKE ?";
+    
+    try (Connection conn = DBConection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        
+        ps.setString(1, "%" + keyword + "%");
+        ps.setString(2, "%" + keyword + "%");
+        ps.setString(3, "%" + keyword + "%");
+        
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String maSV = rs.getString("MaSV");
+            String hoTen = rs.getString("HoTen");
+            Date ngaySinh = rs.getDate("NgaySinh");
+            boolean gioiTinh = rs.getBoolean("GioiTinh");
+            String diaChi = rs.getString("DiaChi");
+            String maKhoa = rs.getString("MaKhoa");
+
+            SinhVien sv = new SinhVien(maSV, hoTen, ngaySinh, gioiTinh, diaChi, maKhoa);
+            list.add(sv);
+        }
+    } catch (Exception e) {
+        System.out.println("Lỗi khi tìm kiếm sinh viên: " + e.getMessage());
+    }
+    return list;
+}
 }

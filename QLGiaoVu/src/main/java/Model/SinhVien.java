@@ -32,6 +32,10 @@ public class SinhVien {
         this.maKhoa = maKhoa;
     }
 
+    public SinhVien() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getMaSV() {
         return maSV;
     }
